@@ -14,6 +14,9 @@ public class ChangeRoom : MonoBehaviour {
 	Animator reticleAnimator; 
 	BlackScreen blkScreen;
 	GameObject sphereScreen;
+	GameObject DubaiMenu;
+	GameObject ParisMenu;
+	GameObject NiceMenu;
 
 	private Color color = new Color(0,0,0,0);
 	private int i = 1;
@@ -21,7 +24,9 @@ public class ChangeRoom : MonoBehaviour {
 	void Start() {
 		reticleAnimator = GameObject.Find ("Reticle").GetComponentInChildren<Animator> ();
 		blkScreen = GameObject.Find ("BlackScreen").GetComponent<BlackScreen>();
-		sphereScreen = GameObject.Find ("sphere");
+		sphereScreen = GameObject.Find ("/sphere");
+//		DubaiMenu = GameObject.Find ("DubaiMenu").gameObject;
+//		DubaiMenu.SetActive(false);
 	}
 	//**** Increase the circle size when you look at it ****\\
 	public void IncreaseChildSize(){

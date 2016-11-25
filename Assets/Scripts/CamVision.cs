@@ -8,12 +8,17 @@ public class CamVision : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		Debug.DrawRay(transform.position, transform.forward*50, Color.blue, 100);
+	void FixedUpdate ()
+	{
+		Debug.DrawRay (transform.position, transform.forward * 50, Color.blue, 100);
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward*50, out hit)) {
-			if(hit.transform.tag == "ScaleTarget")
+		if (Physics.Raycast (transform.position, transform.forward * 50, out hit)) {
+			print(hit.collider.ToString());
+			if (hit.transform.tag == "ScaleTarget") {
+			print("hit scaletarget");
 				hit.transform.GetComponent<ChangeRoom>().IncreaseChildSize();
+				
+			}
 			if(hit.transform.tag == "AnimTarget")
 				hit.transform.GetComponent<PlayAnimOnSight>().OnSightEnter();
 		}
