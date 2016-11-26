@@ -13,11 +13,11 @@ public class CamVision : MonoBehaviour {
 		Debug.DrawRay (transform.position, transform.forward * 50, Color.blue, 100);
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, transform.forward * 50, out hit)) {
-			print(hit.collider.ToString());
 			if (hit.transform.tag == "ScaleTarget") {
-			print("hit scaletarget");
-				hit.transform.GetComponent<ChangeRoom>().IncreaseChildSize();
-				
+				hit.transform.GetComponent<ChangeRoom>().IncreaseChildSize();		
+			}
+			if (hit.transform.tag == "CityPoint") {
+				hit.transform.GetComponent<ShowHoverMenu>().IncreaseChildSize();		
 			}
 			if(hit.transform.tag == "AnimTarget")
 				hit.transform.GetComponent<PlayAnimOnSight>().OnSightEnter();

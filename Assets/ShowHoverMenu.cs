@@ -24,10 +24,41 @@ public class ShowHoverMenu : MonoBehaviour {
 		reticleAnimator = GameObject.Find ("Reticle").GetComponentInChildren<Animator> ();
 		blkScreen = GameObject.Find ("BlackScreen").GetComponent<BlackScreen>();
 		sphereScreen = GameObject.Find ("sphere");	
+		transform.GetChild(1).gameObject.SetActive(false);
+
 	}
-	
+	//**** And decrease it when you're not looking at it ****\\
+	void DecreaseChildSize(){
+		reticleAnimator.SetBool ("LookSomething", false);
+		if(transform.GetChild(0).localScale.x > 0)
+			transform.GetChild(0).localScale -= new Vector3(2*Time.deltaTime,2*Time.deltaTime,2*Time.deltaTime);
+	}
+		
 	// Update is called once per frame
-	void Update () {
-	
+	void Update(){
+		if (count>0){
+			count -= Time.deltaTime;
+			inSight = true;
+		} else inSight = false;
+
+		if(!inSight){
+			DecreaseChildSize();
+		}
+	}
+
+	//**** Increase the circle size when you look at it ****\\
+	public void IncreaseChildSize(){
+		if(!isChanging){
+			if (transform.GetChild (0).localScale.x <= 0.9f) {
+				transform.GetChild (0).localScale += new Vector3 (.5f * Time.deltaTime, .5f * Time.deltaTime, .5f * Time.deltaTime);
+				reticleAnimator.SetBool ("LookSomething", true);
+			} else {
+//				StartCoroutine (FadeChangeRoom ());
+				transform.GetChild(1).gameObject.SetActive(true);
+//				transform.GetChild(1).hideFlags.None;
+				reticleAnimator.SetBool ("LookSomething", false);
+			}
+			count = 0.5f;
+		}
 	}
 }
