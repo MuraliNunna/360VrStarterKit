@@ -24,7 +24,7 @@ public class ShowHoverMenu : MonoBehaviour {
 		reticleAnimator = GameObject.Find ("Reticle").GetComponentInChildren<Animator> ();
 		blkScreen = GameObject.Find ("BlackScreen").GetComponent<BlackScreen>();
 		sphereScreen = GameObject.Find ("sphere");	
-		transform.GetChild(1).gameObject.SetActive(false);
+		transform.GetChild(1).gameObject.SetActive(false); // explicitly set the menu as inactive so as to hide.
 
 	}
 	//**** And decrease it when you're not looking at it ****\\
@@ -54,7 +54,8 @@ public class ShowHoverMenu : MonoBehaviour {
 				reticleAnimator.SetBool ("LookSomething", true);
 			} else {
 //				StartCoroutine (FadeChangeRoom ());
-				transform.GetChild(1).gameObject.SetActive(true);
+				transform.GetChild(1).gameObject.SetActive(true); // set the menu as active 
+				transform.GetChild(0).gameObject.SetActive(false); // no more hover animation now.
 //				transform.GetChild(1).hideFlags.None;
 				reticleAnimator.SetBool ("LookSomething", false);
 			}

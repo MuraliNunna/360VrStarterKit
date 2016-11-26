@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ChangeRoom : MonoBehaviour {
 	public List<Texture2D> textureSphere;
 	public float fadeDuration = 1;
+	public string InsideScene;
 
 	bool inSight = false;
 	bool isChanging = false;
@@ -14,9 +16,6 @@ public class ChangeRoom : MonoBehaviour {
 	Animator reticleAnimator; 
 	BlackScreen blkScreen;
 	GameObject sphereScreen;
-	GameObject DubaiMenu;
-	GameObject ParisMenu;
-	GameObject NiceMenu;
 
 	private Color color = new Color(0,0,0,0);
 	private int i = 1;
@@ -25,8 +24,7 @@ public class ChangeRoom : MonoBehaviour {
 		reticleAnimator = GameObject.Find ("Reticle").GetComponentInChildren<Animator> ();
 		blkScreen = GameObject.Find ("BlackScreen").GetComponent<BlackScreen>();
 		sphereScreen = GameObject.Find ("/sphere");
-//		DubaiMenu = GameObject.Find ("DubaiMenu").gameObject;
-//		DubaiMenu.SetActive(false);
+//		InsideScene = SceneManager.GetSceneByName("InsideScene");
 	}
 	//**** Increase the circle size when you look at it ****\\
 	public void IncreaseChildSize(){
@@ -35,7 +33,8 @@ public class ChangeRoom : MonoBehaviour {
 				transform.GetChild (0).localScale += new Vector3 (.5f * Time.deltaTime, .5f * Time.deltaTime, .5f * Time.deltaTime);
 				reticleAnimator.SetBool ("LookSomething", true);
 			} else {
-				StartCoroutine (FadeChangeRoom ());
+//				StartCoroutine (FadeChangeRoom ());
+				SceneManager.LoadScene(InsideScene.ToString());
 				reticleAnimator.SetBool ("LookSomething", false);
 			}
 			count = 0.5f;
