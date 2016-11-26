@@ -29,8 +29,9 @@ public class ChangeRoom : MonoBehaviour {
 	//**** Increase the circle size when you look at it ****\\
 	public void IncreaseChildSize(){
 		if(!isChanging){
-			if (transform.GetChild (0).localScale.x <= 0.9f) {
-				transform.GetChild (0).localScale += new Vector3 (.5f * Time.deltaTime, .5f * Time.deltaTime, .5f * Time.deltaTime);
+			if (transform.GetChild (1).localScale.x <= 1.2f) {
+//				transform.GetChild (0).localScale += new Vector3 (.2f * Time.deltaTime, .2f * Time.deltaTime, .5f * Time.deltaTime);
+				transform.GetChild (1).localScale += new Vector3 (.2f * Time.deltaTime, .2f * Time.deltaTime, .5f * Time.deltaTime);
 				reticleAnimator.SetBool ("LookSomething", true);
 			} else {
 //				StartCoroutine (FadeChangeRoom ());
@@ -43,8 +44,8 @@ public class ChangeRoom : MonoBehaviour {
 	//**** And decrease it when you're not looking at it ****\\
 	void DecreaseChildSize(){
 		reticleAnimator.SetBool ("LookSomething", false);
-		if(transform.GetChild(0).localScale.x > 0)
-			transform.GetChild(0).localScale -= new Vector3(2*Time.deltaTime,2*Time.deltaTime,2*Time.deltaTime);
+		if(transform.GetChild(1).localScale.x > 1.2f && transform.GetChild(1).localScale.x < 1.01f)
+			transform.GetChild(1).localScale -= new Vector3(2*Time.deltaTime,2*Time.deltaTime,2*Time.deltaTime);
 	}
 
 	void Update(){

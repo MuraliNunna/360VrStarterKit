@@ -18,7 +18,7 @@ public class CamVision : MonoBehaviour {
 				hit.transform.GetComponent<ChangeRoom>().IncreaseChildSize();		
 			}
 			if (hit.transform.tag == "BackPoint") {
-				hit.transform.GetComponent<InsideScene>().GoBack();		
+				hit.transform.GetComponent<InsideScene>().IncreaseChildSize();		
 			}
 			if (hit.transform.tag == "CityPoint") {
 				hit.transform.GetComponent<ShowHoverMenu>().IncreaseChildSize();		
