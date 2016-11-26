@@ -23,6 +23,10 @@ public class CamVision : MonoBehaviour {
 			if (hit.transform.tag == "CityPoint") {
 				hit.transform.GetComponent<ShowHoverMenu>().IncreaseChildSize();		
 			}
+			if (hit.transform.tag == "WishList") {
+				print("Hit wishlist");
+				hit.transform.GetComponent<WishList>().IncreaseChildSize();		
+			}
 			if(hit.transform.tag == "AnimTarget")
 				hit.transform.GetComponent<PlayAnimOnSight>().OnSightEnter();
 		}
